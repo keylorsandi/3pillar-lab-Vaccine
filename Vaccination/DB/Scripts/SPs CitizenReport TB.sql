@@ -11,14 +11,12 @@ CREATE PROCEDURE SP_AddCitizenReport
 @VaccinationDate smalldatetime,
 @Condition bit
 
-as
-begin
+AS
+BEGIN
  EXECUTE sp_MSforeachtable "ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL";
  INSERT [Citizen report](idCitizen, idCampus, idVaccine, [Dose number], [Vaccination date],condition)
  VALUES(@idCitizen , @idCampus , @idVaccine , @DoseNumber , @VaccinationDate, @Condition);
-end
-GO
-EXECUTE SP_AddCitizenReport 6,9,1,2,'2020-04-20 00:00:00',1;
+END
 GO
 ---------
 --Update
@@ -30,25 +28,21 @@ CREATE PROCEDURE SP_UpdateCitizenReport
 @idVaccine tinyint,
 @DoseNumber tinyint,
 @VaccinationDate smalldatetime
-
-as
-begin
+AS
+BEGIN
  EXECUTE sp_MSforeachtable "ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL";
  UPDATE [Citizen report]
  SET idCitizen = @idCitizen ,idCampus = @idCampus ,idVaccine = @idVaccine ,[Dose number] = @DoseNumber ,[Vaccination date] = @VaccinationDate
  WHERE idReport = @ID;
-end
-GO
-EXECUTE SP_UpdateCitizenReport 5,4,8,1,2,'2020-03-20 00:00:00';
-
+END
 GO
 ---------
 --Delete
 ---------
 CREATE PROCEDURE SP_DeleteCitizenReport 
 @ID tinyInt
-as
-begin
+AS
+BEGIN
 BEGIN TRY
  EXECUTE sp_MSforeachtable "ALTER TABLE ? NOCHECK CONSTRAINT ALL";
  DELETE [Citizen report]
@@ -58,9 +52,8 @@ END TRY
 BEGIN CATCH
 print '[!]ERROR IN THE PROCESS';
 END CATCH;
-end
+END
 GO
-EXECUTE SP_DeleteCitizenReport 12
 
 ---------------
 --Logic Delete
@@ -83,10 +76,6 @@ PRINT '[!]ERROR IN THE PROCESS';
 END CATCH;
 END
 GO
-
-EXECUTE SP_LogicDeleteCitizenReport 12;
-
-
 
 
 SELECT * FROM [Citizen report]

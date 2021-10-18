@@ -19,8 +19,6 @@ BEGIN
  VALUES(@Name,@Maternalsurname,@Paternalsurname,@Address,@Telephonenumber,@Age,@Condition);
 END
 GO
-EXECUTE SP_AddCitizen 'Jose','Perez','Acuña','main streed',87993578,25,1;
-GO
 ---------
 --Update
 ---------
@@ -40,11 +38,8 @@ BEGIN
  WHERE idCitizen = @ID;
 END
 GO
-EXECUTE SP_UpdateCitizen 5,'Julio','Perez','Acuña','main streed',87993578,25;
-
-GO
 ---------
---Delete
+--Physical Delete
 ---------
 CREATE PROCEDURE SP_DeleteCitizen 
 @ID tinyInt
@@ -62,9 +57,6 @@ print '[!]ERROR IN THE PROCESS';
 END CATCH;
 END
 GO
-EXECUTE SP_DeleteCitizen 12
-
-
 ---------------
 --Logic Delete
 ---------------
@@ -86,7 +78,5 @@ PRINT '[!]ERROR IN THE PROCESS';
 END CATCH;
 END
 GO
-
-EXECUTE SP_LogicDeleteCitizen 12;
 
 SELECT * FROM Citizen

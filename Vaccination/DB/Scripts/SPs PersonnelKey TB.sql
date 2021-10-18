@@ -14,8 +14,6 @@ EXECUTE sp_MSforeachtable "ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL";
  VALUES(@Name,@Condition);
 END
 GO
-EXECUTE SP_AddPersonnelkey 'Enfermero',1;
-GO
 ---------
 --Update
 ---------
@@ -30,12 +28,8 @@ BEGIN
  WHERE [idPersonnel key] = @ID;
 END
 GO
-EXECUTE SP_UpdatePersonnelkey 5 ,'aguacate';
-
-GO
-
 ---------
---Delete
+--Physical Delete
 ---------
 CREATE PROCEDURE SP_DeletePersonnelkey 
 @ID tinyInt
@@ -52,10 +46,8 @@ PRINT '[!]ERROR IN THE PROCESS';
 END CATCH;
 END
 GO
-EXECUTE SP_DeletePersonnelkey 5
-
 ---------------
---Logic Delete
+--Logical Delete
 ---------------
 CREATE PROCEDURE SP_LogicDeletePersonnelKey
 @ID int
@@ -75,7 +67,5 @@ PRINT '[!]ERROR IN THE PROCESS';
 END CATCH;
 END
 GO
-
-EXECUTE SP_LogicDeletePersonnelKey 12;
 
 SELECT * FROM [Personnel key]

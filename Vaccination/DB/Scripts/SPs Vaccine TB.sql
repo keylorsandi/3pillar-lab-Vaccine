@@ -15,8 +15,6 @@ BEGIN
  VALUES(@Name, @Dose,@Condition);
 END
 GO
-EXECUTE SP_AddVaccine 'Culebrilla',55,1;
-GO
 ---------
 --Update
 ---------
@@ -32,11 +30,8 @@ BEGIN
  WHERE idVaccine = @ID;
 END
 GO
-
-EXECUTE SP_UpdateVaccine 4,'MMR combinada', 45;
-GO
 ---------
---Delete
+--Physical Delete
 ---------
 CREATE PROCEDURE SP_DeleteVaccine 
 @ID tinyInt
@@ -53,8 +48,6 @@ PRINT '[!]ERROR IN THE PROCESS';
 END CATCH;
 END
 GO
-EXECUTE SP_DeleteVaccine 1
-
 ---------------
 --Logic Delete
 ---------------
@@ -76,8 +69,5 @@ PRINT '[!]ERROR IN THE PROCESS';
 END CATCH;
 END
 GO
-
-EXECUTE SP_LogicDeleteVaccine 12;
-
 
 SELECT * FROM Vaccine

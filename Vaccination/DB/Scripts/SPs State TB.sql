@@ -13,10 +13,6 @@ BEGIN
  VALUES(@Name,@Condition);
 END
 GO
-EXECUTE SP_AddState 'Durango',1;
-
-
-GO
 ---------
 --Update
 ---------
@@ -31,10 +27,6 @@ BEGIN
  WHERE idState = @ID;
 END
 GO
-EXECUTE SP_UpdateState 5 ,'Durango';
-
-GO
-
 ---------
 --Delete
 ---------
@@ -53,8 +45,6 @@ PRINT '[!]ERROR IN THE PROCESS';
 END CATCH;
 END
 GO
-EXECUTE SP_DeleteState 12
-
 ---------------
 --Logic Delete
 ---------------
@@ -76,7 +66,5 @@ PRINT '[!]ERROR IN THE PROCESS';
 END CATCH;
 END
 GO
-
-EXECUTE SP_LogicDeleteState 12;
 
 SELECT * FROM State

@@ -20,10 +20,6 @@ EXECUTE sp_MSforeachtable "ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL";
  VALUES(@Name,@Address,@Date,@Condition,@idState);
 END
 GO
-EXECUTE SP_AddCampus  'Virginia','streed2','2018/03/20 00:00:00',1,5 ;
-
-
-GO
 ---------
 --Update
 ---------
@@ -32,20 +28,15 @@ CREATE PROCEDURE SP_UpdateCampus
 @Name varchar(50),
 @Address varchar(50),
 @Date smalldatetime,
-@Condition bit,
 @idState tinyint
 AS
 BEGIN
 EXECUTE sp_MSforeachtable "ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL";
  UPDATE Campus
- SET Name = @Name, Address = @Address, Date = @Date, condition = @Condition, idState = @idState
+ SET Name = @Name, Address = @Address, Date = @Date, idState = @idState
  WHERE idCampus = @ID;
 END
 GO
-EXECUTE SP_UpdateCampus 5, 'Virginia','streed2','2018/03/20 00:00:00', 1, 5 ;
-
-GO
-
 ---------
 --Delete
 ---------
@@ -66,9 +57,6 @@ PRINT '[!]ERROR IN THE PROCESS';
 END CATCH;
 END
 GO
-EXECUTE SP_DeleteCampus 12
-GO
-
 ---------------
 --Logic Delete
 ---------------
@@ -90,7 +78,4 @@ PRINT '[!]ERROR IN THE PROCESS';
 END CATCH;
 END
 GO
-
-EXECUTE SP_LogicDeleteCampus 12
-
 SELECT * FROM Campus

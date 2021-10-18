@@ -19,10 +19,6 @@ BEGIN
  VALUES(@Name, @MaternalSurname, @PaternalSurname, @Address, @TelephoneNumber,@Condition, @idPersonnelKey, @idCampus);
 END
 GO
---EXECUTE SP_AddPersonnel 'Mauricio','Araya','Juarez','street 59',215469878, 1, 0, 8;
-
-
-GO
 ---------
 --Update
 ---------
@@ -43,12 +39,9 @@ BEGIN
  WHERE idPersonnel = @ID;
 END
 GO
---EXECUTE SP_UpdatePersonnel 5 ,'Mauricio','Araya','Juarez','street 59',215469878, 0, 8;
-
-GO
 
 ---------
---Delete
+--Physical Delete
 ---------
 CREATE PROCEDURE SP_DeletePersonnel 
 @ID int
@@ -65,10 +58,8 @@ PRINT '[!]ERROR IN THE PROCESS';
 END CATCH;
 END
 GO
---EXECUTE SP_DeletePersonnel 12
-
 ---------------
---Logic Delete
+--Logical Delete
 ---------------
 CREATE PROCEDURE SP_LogicDeletePersonnel
 @ID int
@@ -89,7 +80,7 @@ END CATCH;
 END
 GO
 
---EXECUTE SP_LogicDeletePersonnel 12;
+
 
 
 SELECT * FROM Personnel
